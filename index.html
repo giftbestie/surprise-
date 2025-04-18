@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditi's Birthday Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top, #fff0f5, #ffe4e1);
+      background-image: url('https://i.imgur.com/8bHmvAt.png');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #d63384;
+    }
+    .message-box {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    .quote {
+      margin-top: 20px;
+      font-style: italic;
+      color: #555;
+    }
+    .countdown {
+      font-size: 1.2em;
+      margin-top: 30px;
+    }
+    #cakeSection {
+      display: none;
+      margin-top: 30px;
+    }
+    #cakeImage {
+      width: 300px;
+      margin: 20px auto;
+    }
+    #birthdayMsg {
+      margin-top: 20px;
+      font-size: 1.1em;
+      background: #fff8fc;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ffb6c1;
+    }
+    #cutCakeBtn {
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Aditi's Birthday Countdown</h1>
+    <div class="message-box" id="messageBox">
+      <p id="message"></p>
+      <p class="quote" id="quote"></p>
+      <button id="cutCakeBtn" style="display:none">Cut the Cake</button>
+    </div>
+    <div class="countdown" id="countdown"></div>
+    <div id="cakeSection">
+      <img src="https://i.imgur.com/7NlcVfE.png" alt="Birthday Cake" id="cakeImage">
+      <div id="birthdayMsg">
+        <strong>Happy Birthday, Aditi!</strong><br />
+        You are the brightest star in my life, and I’m endlessly grateful for your love, strength, and friendship. Watching you grow and shine has been a gift I cherish every day. You deserve the best of everything—today and always. Let’s keep making beautiful memories, hand in hand, forever.
+      </div>
+      <audio id="birthdaySong" src="https://www.fesliyanstudios.com/play-mp3/387" autoplay loop></audio>
+    </div>
+  </div>
+
+  <script>
+    const countdownData = [
+      { date: '2025-04-19', message: "To the girl who lights up every room...", quote: "The more you praise and celebrate your life..." },
+      { date: '2025-04-20', message: "Aditi, you're not just beautiful...", quote: "You are enough just as you are." },
+      { date: '2025-04-21', message: "Your heart is pure, your soul is beautiful...", quote: "You are capable of amazing things." },
+      { date: '2025-04-22', message: "You bring joy and warmth...", quote: "Don't wait for the perfect moment..." },
+      { date: '2025-04-23', message: "You handle everything with elegance...", quote: "Believe you can and you're halfway there." },
+      { date: '2025-04-24', message: "Your smile and laughter are the best gifts...", quote: "In a world where you can be anything, be kind." },
+      { date: '2025-04-25', message: "You have a heart of gold...", quote: "The best way to predict the future is to create it." },
+      { date: '2025-04-26', message: "Every second with you is a treasured memory...", quote: "Life is 10% what happens to us..." },
+      { date: '2025-04-27', message: "Today’s the big day, Aditi! Click the button below to cut your cake!", quote: "This is your year. Own it!" }
+    ];
+
+    const today = new Date().toISOString().split('T')[0];
+    const msgBox = document.getElementById('message');
+    const quoteBox = document.getElementById('quote');
+    const countdownBox = document.getElementById('countdown');
+    const cakeSection = document.getElementById('cakeSection');
+    const cutCakeBtn = document.getElementById('cutCakeBtn');
+    const birthdaySong = document.getElementById('birthdaySong');
+
+    const todayData = countdownData.find(day => day.date === today);
+
+    if (todayData) {
+      msgBox.textContent = todayData.message;
+      quoteBox.textContent = todayData.quote;
+
+      if (today === '2025-04-27') {
+        cutCakeBtn.style.display = 'inline-block';
+        cutCakeBtn.onclick = () => {
+          cakeSection.style.display = 'block';
+          birthdaySong.play();
+        };
+      }
+    } else if (today < '2025-04-19') {
+      countdownBox.innerHTML = `Countdown begins soon...`;
+    } else if (today > '2025-04-27') {
+      countdownBox.innerHTML = `Birthday surprise is complete!`;
+    } else {
+      countdownBox.innerHTML = `Stay tuned for today’s message...`;
+    }
+  </script>
+</body>
+</html>
